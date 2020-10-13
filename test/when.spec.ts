@@ -7,12 +7,22 @@ test('should work', (t) => {
 
   ;(async() => {
     t.is(r.value, 0)
-
     await when(r).toBe(1)
-
     t.is(r.value, 1)
   })()
 
+  setTimeout(() => {
+    r.value = 1
+  }, 100)
+})
+
+test('should support `not`', (t) => {
+  const r = ref(0)
+  ;(async() => {
+    t.is(r.value, 0)
+    await when(r).not.toBe(0)
+    t.is(r.value, 1)
+  })()
   setTimeout(() => {
     r.value = 1
   }, 100)
