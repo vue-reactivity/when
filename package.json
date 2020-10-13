@@ -22,7 +22,6 @@
     "release": "npx bumpp --tag --commit --push && pnpm publish --access public"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@vue-reactivity/watch": "^0.1.4",
     "@vue/reactivity": ">=3.0.0",
     "@vue/shared": ">=3.0.0"
