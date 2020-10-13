@@ -57,10 +57,24 @@ export function when<T>(r: Ref<T>) {
     return toMatch(v => v != null, options)
   }
 
+  function changed(options?: WhenToMatchOptions) {
+    return toMatch(() => true, options)
+  }
+
+  function changedTimes(n = 1, options?: WhenToMatchOptions) {
+    let count = 0
+    return toMatch(() => {
+      count += 1
+      return count >= n
+    }, options)
+  }
+
   return {
     toMatch,
     toBe,
     toBeTruthy,
     toNotNull,
+    changed,
+    changedTimes,
   }
 }
