@@ -17,6 +17,8 @@ Promised one time watch for <a href="https://github.com/vuejs/vue-next/tree/mast
 npm i @vue-reactivity/<b>when</b>
 </pre>
 
+For Vue applications, try [`when` in VueUse](https://vueuse.js.org/?path=/story/utilities--when) instead.
+
 ### Usage
 
 #### Wait for some async data to be ready
