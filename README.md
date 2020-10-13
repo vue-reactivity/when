@@ -76,6 +76,8 @@ await when(ref).changed()
 await when(ref).changedTimes(10)
 await when(ref).toBeTruthy()
 await when(ref).toNotNull()
+await when(ref).not.toNotNull()
+await when(ref).not.toBeTruthy()
 ```
 
 ## License
