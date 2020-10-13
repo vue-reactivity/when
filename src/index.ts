@@ -1,5 +1,11 @@
-import {Ref} from '@vue/reactivity'
-import {watch, WatchOptions} from '@vue-reactivity/watch'
+import { Ref } from '@vue/reactivity'
+import { watch, WatchOptions } from '@vue-reactivity/watch'
+
+interface WhenToMatchOptions {
+  flush?: WatchOptions['flush']
+  timeout?: number
+  throwOnTimeout?: boolean
+}
 
 export function promiseTimeout(ms: number, throwOnTimeout = false): Promise<void> {
   return new Promise((resolve, reject) => {
@@ -12,12 +18,6 @@ export function promiseTimeout(ms: number, throwOnTimeout = false): Promise<void
 
 export function invoke<T>(fn: () => T): T {
   return fn()
-}
-
-interface WhenToMatchOptions {
-  flush?: WatchOptions['flush']
-  timeout?: number
-  throwOnTimeout?: boolean
 }
 
 export function when<T>(r: Ref<T>) {
@@ -59,8 +59,8 @@ export function when<T>(r: Ref<T>) {
     return toMatch(v => Boolean(v), options)
   }
 
-  function toNotNull(options?: WhenToMatchOptions) {
-    return toMatch(v => v != null, options)
+  function toBeNull(options?: WhenToMatchOptions) {
+    return toMatch(v => v == null, options)
   }
 
   function changed(options?: WhenToMatchOptions) {
@@ -79,7 +79,7 @@ export function when<T>(r: Ref<T>) {
     toMatch,
     toBe,
     toBeTruthy,
-    toNotNull,
+    toBeNull,
     changed,
     changedTimes,
     get not() {

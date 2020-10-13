@@ -17,7 +17,7 @@ Promised one time watch for <a href="https://github.com/vuejs/vue-next/tree/mast
 npm i @vue-reactivity/<b>when</b>
 </pre>
 
-For Vue applications, try [`when` in VueUse](https://vueuse.js.org/?path=/story/utilities--when) instead.
+If you are making Vue applications, try [`when` in VueUse](https://vueuse.js.org/?path=/story/utilities--when) instead.
 
 ### Usage
 
@@ -75,8 +75,9 @@ await when(ref).toMatch(v => v > 10 && v < 100)
 await when(ref).changed()
 await when(ref).changedTimes(10)
 await when(ref).toBeTruthy()
-await when(ref).toNotNull()
-await when(ref).not.toNotNull()
+await when(ref).toBeNull()
+
+await when(ref).not.toBeNull()
 await when(ref).not.toBeTruthy()
 ```
 
