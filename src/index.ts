@@ -58,11 +58,11 @@ export function when<T>(r: Ref<T>) {
   }
 
   function changed(options?: WhenToMatchOptions) {
-    return toMatch(() => true, options)
+    return changedTimes(1, options)
   }
 
   function changedTimes(n = 1, options?: WhenToMatchOptions) {
-    let count = 0
+    let count = -1 // skip the immediate check
     return toMatch(() => {
       count += 1
       return count >= n
