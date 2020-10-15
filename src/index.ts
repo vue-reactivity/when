@@ -20,11 +20,11 @@ export function invoke<T>(fn: () => T): T {
   return fn()
 }
 
-export function when<T>(r: Ref<T>) {
+export function when<T>(r: Ref<T> | object) {
   let isNot = false
 
   function toMatch(
-    condition: (v: T) => boolean,
+    condition: (v: T | object) => boolean,
     { flush = 'sync', timeout, throwOnTimeout }: WhenToMatchOptions = {},
   ): Promise<void> {
     let stop: Function | null = null
@@ -51,7 +51,7 @@ export function when<T>(r: Ref<T>) {
     return Promise.race(promises)
   }
 
-  function toBe(value: T, options?: WhenToMatchOptions) {
+  function toBe<P>(value: P | T, options?: WhenToMatchOptions) {
     return toMatch(v => v === value, options)
   }
 
@@ -60,7 +60,22 @@ export function when<T>(r: Ref<T>) {
   }
 
   function toBeNull(options?: WhenToMatchOptions) {
-    return toMatch(v => v == null, options)
+    return toBe<null>(null, options)
+  }
+
+  function toBeUndefined(options?: WhenToMatchOptions) {
+    return toBe<undefined>(undefined, options)
+  }
+
+  function toBeNaN(options?: WhenToMatchOptions) {
+    return toMatch(Number.isNaN, options)
+  }
+
+  function toContain<P>(value: P, options?: WhenToMatchOptions) {
+    return toMatch((v) => {
+      const array = Array.from(v as any)
+      return array.includes(value)
+    }, options)
   }
 
   function changed(options?: WhenToMatchOptions) {
@@ -80,6 +95,9 @@ export function when<T>(r: Ref<T>) {
     toBe,
     toBeTruthy,
     toBeNull,
+    toBeNaN,
+    toBeUndefined,
+    toContain,
     changed,
     changedTimes,
     get not() {
