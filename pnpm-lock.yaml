@@ -1,5 +1,5 @@
 dependencies:
-  '@vue-reactivity/watch': 0.1.4_7e669da1516f6ddba0f0552b6a8334b4
+  '@vue-reactivity/watch': 0.1.6_7e669da1516f6ddba0f0552b6a8334b4
   '@vue/reactivity': 3.0.0
   '@vue/shared': 3.0.0
 devDependencies:
@@ -375,7 +375,7 @@ packages:
       node: ^8.10.0 || ^10.13.0 || >=11.10.1
     resolution:
       integrity: sha512-qC8Olwz5ZyMTZrh4Wl3K4U6tfms0R/mzU4/5W3XeUZptVraGVmbptJbn6h2Ey6Rb3hOs3zWoAUebZk8t47KGiQ==
-  /@vue-reactivity/watch/0.1.4_7e669da1516f6ddba0f0552b6a8334b4:
+  /@vue-reactivity/watch/0.1.6_7e669da1516f6ddba0f0552b6a8334b4:
     dependencies:
       '@vue/reactivity': 3.0.0
       '@vue/shared': 3.0.0
@@ -384,7 +384,7 @@ packages:
       '@vue/reactivity': '>=3.0.0-rc.1'
       '@vue/shared': '>=3.0.0-rc.1'
     resolution:
-      integrity: sha512-27rcAf6qPUww3S5KidtWBnwolAstJE4hO2F5UgnbB+CEV8o3iUbg0f/4VtHAipA0VcArIhlJ3SUeZd6NWLSTJA==
+      integrity: sha512-Se4D+1LAnn8B49MuRzWyZv2syb+9FTuxXKA8FF6gjZD08PdVwoVZG3ncZzqFFG2lVlzx03+rjOCtIJb+VkD3Qg==
   /@vue/reactivity/3.0.0:
     dependencies:
       '@vue/shared': 3.0.0
@@ -3619,7 +3619,7 @@ packages:
 specifiers:
   '@antfu/eslint-config-ts': ^0.3.3
   '@types/node': ^14.11.8
-  '@vue-reactivity/watch': ^0.1.4
+  '@vue-reactivity/watch': ^0.1.6
   '@vue/reactivity': '>=3.0.0'
   '@vue/shared': '>=3.0.0'
   ava: ^3.13.0
