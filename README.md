@@ -76,6 +76,8 @@ await when(ref).changed()
 await when(ref).changedTimes(10)
 await when(ref).toBeTruthy()
 await when(ref).toBeNull()
+await when(ref).toBeNaN()
+await when(ref).toContain(5)
 
 await when(ref).not.toBeNull()
 await when(ref).not.toBeTruthy()

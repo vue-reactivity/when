@@ -1,5 +1,4 @@
-import { Ref } from '@vue/reactivity'
-import { watch, WatchOptions } from '@vue-reactivity/watch'
+import { watch, WatchOptions, WatchSource } from '@vue-reactivity/watch'
 
 interface WhenToMatchOptions {
   flush?: WatchOptions['flush']
@@ -20,7 +19,21 @@ export function invoke<T>(fn: () => T): T {
   return fn()
 }
 
-export function when<T>(r: Ref<T> | object) {
+export interface WhenInstance<T> {
+  readonly not: WhenInstance<T>
+
+  toMatch(condition: (v: T | object) => boolean, options?: WhenToMatchOptions): Promise<void>
+  toBe<P>(value: P | T, options?: WhenToMatchOptions): Promise<void>
+  toBeTruthy(options?: WhenToMatchOptions): Promise<void>
+  toBeNull(options?: WhenToMatchOptions): Promise<void>
+  toBeUndefined(options?: WhenToMatchOptions): Promise<void>
+  toBeNaN(options?: WhenToMatchOptions): Promise<void>
+  toContain<P>(value: P, options?: WhenToMatchOptions): Promise<void>
+  changed(options?: WhenToMatchOptions): Promise<void>
+  changedTimes(n?: number, options?: WhenToMatchOptions): Promise<void>
+}
+
+export function when<T>(r: WatchSource<T> | object): WhenInstance<T> {
   let isNot = false
 
   function toMatch(

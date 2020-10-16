@@ -25,11 +25,9 @@ test('should work for changedTimes', async(t) => {
     r.value = 3
   }, 100)
 
-  await invoke(async() => {
-    t.is(r.value, 0)
-    await when(r).changedTimes(3)
-    t.is(r.value, 3)
-  })
+  t.is(r.value, 0)
+  await when(r).changedTimes(3)
+  t.is(r.value, 3)
 })
 
 test('should work for toBeNaN', async(t) => {
@@ -39,11 +37,9 @@ test('should work for toBeNaN', async(t) => {
     r.value = NaN
   }, 100)
 
-  await invoke(async() => {
-    t.is(r.value, 0)
-    await when(r).toBeNaN()
-    t.is(r.value, NaN)
-  })
+  t.is(r.value, 0)
+  await when(r).toBeNaN()
+  t.is(r.value, NaN)
 })
 
 test('should work for toBeUndefined', async(t) => {
@@ -58,7 +54,19 @@ test('should work for toBeUndefined', async(t) => {
   t.is(r.value, undefined)
 })
 
-test('should work for toContain', async(t) => {
+test('should work for toContain with Array', async(t) => {
+  const r = reactive(['foo'])
+
+  setTimeout(() => {
+    r.push('bar')
+  }, 100)
+
+  t.deepEqual(r, ['foo'])
+  await when(r).toContain('bar')
+  t.deepEqual(r, ['foo', 'bar'])
+})
+
+test('should work for toContain with Set', async(t) => {
   const r = reactive(new Set([0]))
 
   setTimeout(() => {
